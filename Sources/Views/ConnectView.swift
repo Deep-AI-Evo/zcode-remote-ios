@@ -211,40 +211,66 @@ struct WebViewRep: UIViewRepresentable {
         }
 
         // MARK: 文件上传（网页 <input type=file>）：PHPicker / 文件选择器，无需存储权限
+        // iOS 26 SDK：旧 runFilePickerPanelWith 已移除，改用 runOpenPanelWith（iOS 18.4+）
 
+        @available(iOS 18.4, *)
         func webView(
             _ webView: WKWebView,
-            runFilePickerPanelWith parameters: WKFileUploadParameters,
+            runOpenPanelWith parameters: WKOpenPanelParameters,
             initiatedByFrame frame: WKFrameInfo,
             completionHandler: @escaping ([URL]?) -> Void
         ) {
-            let wantsMedia = parameters.allowedMIMETypes.isEmpty
-                || parameters.allowedMIMETypes.contains { $0.hasPrefix("image/") || $0.hasPrefix("video/") }
-
-            if wantsMedia {
-                var config = PHPickerConfiguration()
-                config.filter = [.images, .videos]
-                config.selectionLimit = parameters.allowsMultipleSelection ? 0 : 1
-                let picker = PHPickerViewController(configuration: config)
-                picker.delegate = contextlessPickerDelegate(completionHandler: completionHandler)
-                present(picker, from: webView)
-            } else {
-                var types: [UTType] = parameters.allowedMIMETypes.compactMap(UTType.init(mimeType:))
-                if types.isEmpty { types = [.data] }
-                let picker = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
-                picker.allowsMultipleSelection = parameters.allowsMultipleSelection
-                picker.delegate = contextlessPickerDelegate(completionHandler: completionHandler)
-                present(picker, from: webView)
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "照片或视频", style: .default) { _ in
+                    self.presentMediaPicker(parameters: parameters, completionHandler: completionHandler)
+                })
+                alert.addAction(UIAlertAction(title: "文件", style: .default) { _ in
+                    self.presentDocumentPicker(parameters: parameters, completionHandler: completionHandler)
+                })
+                alert.addAction(UIAlertAction(title: "取消", style: .cancel) { _ in
+                    completionHandler(nil)
+                })
+                var top: UIViewController? = webView.window?.rootViewController
+                while let presented = top?.presentedViewController { top = presented }
+                top?.present(alert, animated: true)
             }
         }
 
-        private func present(_ picker: UIViewController, from webView: WKWebView) {
-            var top = webView.window?.rootViewController
+        @available(iOS 18.4, *)
+        private func presentMediaPicker(
+            parameters: WKOpenPanelParameters,
+            completionHandler: @escaping ([URL]?) -> Void
+        ) {
+            var config = PHPickerConfiguration()
+            config.filter = PHPickerFilter.any(of: [.images, .videos])
+            config.selectionLimit = parameters.allowsMultipleSelection ? 0 : 1
+            let picker = PHPickerViewController(configuration: config)
+            picker.delegate = retainPickerDelegate(completionHandler: completionHandler)
+            presentOverWebView(picker)
+        }
+
+        @available(iOS 18.4, *)
+        private func presentDocumentPicker(
+            parameters: WKOpenPanelParameters,
+            completionHandler: @escaping ([URL]?) -> Void
+        ) {
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.data], asCopy: true)
+            picker.allowsMultipleSelection = parameters.allowsMultipleSelection
+            picker.delegate = retainPickerDelegate(completionHandler: completionHandler)
+            presentOverWebView(picker)
+        }
+
+        private func presentOverWebView(_ picker: UIViewController) {
+            // 由调用方传入 webView 上下文，这里用当前 key window 的 root
+            var top = UIApplication.shared.connectedScenes
+                .compactMap { ($0 as? UIWindowScene)?.keyWindow?.rootViewController }
+                .first
             while let presented = top?.presentedViewController { top = presented }
             top?.present(picker, animated: true)
         }
 
-        private func contextlessPickerDelegate(completionHandler: @escaping ([URL]?) -> Void)
+        private func retainPickerDelegate(completionHandler: @escaping ([URL]?) -> Void)
             -> PickerCoordinator {
             let delegate = PickerCoordinator(completion: completionHandler)
             activePickerDelegate = delegate

@@ -39,8 +39,8 @@ struct QRScannerView: UIViewControllerRepresentable {
         private func startScanner() {
             let scanner = DataScannerViewController(
                 recognizedDataTypes: [.barcode()],
-                qualityMode: .balanced,
-                isHighlightingRecognizedItems: true
+                qualityLevel: .balanced,
+                isHighlightingEnabled: true
             )
             scanner.delegate = self
             addChild(scanner)
