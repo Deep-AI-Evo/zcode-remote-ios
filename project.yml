@@ -1,0 +1,38 @@
+name: ZCodeRemote
+options:
+  bundleIdPrefix: com.zcode
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1,2"   # iPhone + iPad
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  ZCodeRemote:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zcode.remote.ios
+        MARKETING_VERSION: "1.4.2"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: ZCode 远程
+        CFBundleShortVersionString: "1.4.2"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSCameraUsageDescription: "扫描电脑屏幕上 ZCode 的连接二维码，用于添加远程连接"
+        ITSAppUsesNonExemptEncryption: false

@@ -1,0 +1,13 @@
+# Xcode
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+xcuserdata/
+DerivedData/
+build/
+
+# macOS
+.DS_Store
+
+# SwiftPM
+.build/
