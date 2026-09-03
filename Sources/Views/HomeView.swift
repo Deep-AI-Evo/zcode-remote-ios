@@ -27,6 +27,7 @@ struct HomeView: View {
                             .font(.title3)
                     }
                     .accessibilityLabel("添加连接")
+                    .accessibilityIdentifier("home.add")
                 }
             }
             .sheet(isPresented: $showingAdd) {
@@ -36,6 +37,12 @@ struct HomeView: View {
                 ConnectView(connection: conn)
             }
             .task {
+                // UI 测试：从干净状态开始
+                if ProcessInfo.processInfo.arguments.contains("UITEST_RESET") {
+                    store.removeAllForTesting()
+                    autoOpened = true
+                    return
+                }
                 // 恢复上次的连接页：重新打开 App 直接回到工作画面
                 guard !autoOpened else { return }
                 autoOpened = true
@@ -79,6 +86,7 @@ struct HomeView: View {
                     }
                     .padding(.vertical, 4)
                 }
+                .accessibilityIdentifier("home.card")
                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     Button(role: .destructive) {
                         store.remove(id: conn.id)

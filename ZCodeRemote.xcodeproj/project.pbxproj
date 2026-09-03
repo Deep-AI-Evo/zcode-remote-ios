@@ -12,12 +12,25 @@
 		51972C6D3A20EC7B6C26767E /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FA46027A7A98F13D0BBBC /* ConnectView.swift */; };
 		5B1FDDF4491F6B5EDBBE5C3C /* AddLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582D4A2C6225B540536EA8C9 /* AddLinkView.swift */; };
 		C0C75D4501F3882BB5F851A2 /* ZCodeRemoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A4008D46E540A568F1F00 /* ZCodeRemoteApp.swift */; };
+		D219CD805E486F504CB86856 /* ZCodeRemoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42859D71DBB14F51CFB1743A /* ZCodeRemoteUITests.swift */; };
 		FCA7545F3EEB7B4CF482718C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C083684145002F1C7C9AD711 /* HomeView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E3F9DA66FF3B8131D4C3296C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F73C7330F3D23519E3CCF51D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2842446EF229481BBF178FBB;
+			remoteInfo = ZCodeRemote;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		01DFD229CB38B7AF2170510B /* ConnectionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsStore.swift; sourceTree = "<group>"; };
 		400A4008D46E540A568F1F00 /* ZCodeRemoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCodeRemoteApp.swift; sourceTree = "<group>"; };
+		42859D71DBB14F51CFB1743A /* ZCodeRemoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCodeRemoteUITests.swift; sourceTree = "<group>"; };
+		543CAB7082269B75D6543F2B /* ZCodeRemoteUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ZCodeRemoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		582D4A2C6225B540536EA8C9 /* AddLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinkView.swift; sourceTree = "<group>"; };
 		743FA46027A7A98F13D0BBBC /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
 		8420196D639C69DB5C02DAD5 /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
@@ -48,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				F087B36846B8D843B68E385C /* ZCodeRemote.app */,
+				543CAB7082269B75D6543F2B /* ZCodeRemoteUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				1D8E97141BF7FF1542916E42 /* Sources */,
+				736BCD09FE1B2C5113A01824 /* UITests */,
 				26220D5368AF5424ED94A6A6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +84,14 @@
 				8420196D639C69DB5C02DAD5 /* QRScannerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		736BCD09FE1B2C5113A01824 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				42859D71DBB14F51CFB1743A /* ZCodeRemoteUITests.swift */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +114,24 @@
 			productReference = F087B36846B8D843B68E385C /* ZCodeRemote.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D042DEFAF778BB746C88F73B /* ZCodeRemoteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63ACA42335835325EA96EED8 /* Build configuration list for PBXNativeTarget "ZCodeRemoteUITests" */;
+			buildPhases = (
+				BABAF504B1F10637E88EAAF0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				705511388FC79DA46372D5DD /* PBXTargetDependency */,
+			);
+			name = ZCodeRemoteUITests;
+			packageProductDependencies = (
+			);
+			productName = ZCodeRemoteUITests;
+			productReference = 543CAB7082269B75D6543F2B /* ZCodeRemoteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -102,6 +143,10 @@
 				TargetAttributes = {
 					2842446EF229481BBF178FBB = {
 						ProvisioningStyle = Automatic;
+					};
+					D042DEFAF778BB746C88F73B = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2842446EF229481BBF178FBB;
 					};
 				};
 			};
@@ -120,6 +165,7 @@
 			projectRoot = "";
 			targets = (
 				2842446EF229481BBF178FBB /* ZCodeRemote */,
+				D042DEFAF778BB746C88F73B /* ZCodeRemoteUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -138,9 +184,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BABAF504B1F10637E88EAAF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D219CD805E486F504CB86856 /* ZCodeRemoteUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		705511388FC79DA46372D5DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2842446EF229481BBF178FBB /* ZCodeRemote */;
+			targetProxy = E3F9DA66FF3B8131D4C3296C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0C296656A09B04F68499FA57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zcode.remote.ios.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZCodeRemote;
+			};
+			name = Debug;
+		};
 		3D7383C6298A7FDC334E0199 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -159,6 +237,22 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		475D7742C51ABD434EE91F5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zcode.remote.ios.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZCodeRemote;
+			};
+			name = Release;
 		};
 		47F7156CE95402ED7B6D92E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -305,6 +399,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		63ACA42335835325EA96EED8 /* Build configuration list for PBXNativeTarget "ZCodeRemoteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C296656A09B04F68499FA57 /* Debug */,
+				475D7742C51ABD434EE91F5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		9FEDEF84686A0B05FDD7B988 /* Build configuration list for PBXProject "ZCodeRemote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

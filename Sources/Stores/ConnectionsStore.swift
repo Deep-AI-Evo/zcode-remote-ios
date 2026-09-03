@@ -58,6 +58,13 @@ final class ConnectionsStore: ObservableObject {
         persist()
     }
 
+    /// 仅供 UI 测试：清空全部数据。
+    func removeAllForTesting() {
+        connections.removeAll()
+        saveLastConnection(nil)
+        persist()
+    }
+
     // MARK: - 最后活动连接（重启后自动回到连接页；主动退出时清除）
 
     var lastConnectionId: String? {

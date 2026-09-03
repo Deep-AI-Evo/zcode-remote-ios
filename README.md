@@ -37,6 +37,15 @@ open ZCodeRemote.xcodeproj
 - **模拟器**：选 iPhone 模拟器直接 ⌘R
 - **真机**：Signing & Capabilities 里选择你自己的开发者 Team（自动签名），连接 iPhone/iPad 后 ⌘R
 
+### 端到端测试 / E2E test
+
+内置 XCUITest 端到端用例（添加连接 → 保存 → 进连接页 → 收起/展开工具条 → 退出回列表）：
+
+```bash
+xcodebuild test -scheme ZCodeRemote \
+  -destination 'platform=iOS Simulator,name=iPhone 16'
+```
+
 ## 项目结构 / Structure
 
 ```

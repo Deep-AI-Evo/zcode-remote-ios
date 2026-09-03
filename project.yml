@@ -36,3 +36,27 @@ targets:
           - UIInterfaceOrientationLandscapeRight
         NSCameraUsageDescription: "扫描电脑屏幕上 ZCode 的连接二维码，用于添加远程连接"
         ITSAppUsesNonExemptEncryption: false
+
+  ZCodeRemoteUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    dependencies:
+      - target: ZCodeRemote
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zcode.remote.ios.uitests
+
+schemes:
+  ZCodeRemote:
+    build:
+      targets:
+        ZCodeRemote: all
+        ZCodeRemoteUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - ZCodeRemoteUITests

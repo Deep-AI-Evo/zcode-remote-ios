@@ -108,6 +108,16 @@ struct ConnectView: View {
                 .frame(width: 34, height: 32)
         }
         .accessibilityLabel(label)
+        .accessibilityIdentifier(identifier(for: label))
+    }
+
+    private func identifier(for label: String) -> String {
+        switch label {
+        case "返回": return "connect.back"
+        case "刷新": return "connect.refresh"
+        case "收起工具条": return "connect.collapse"
+        default: return "connect.\(label)"
+        }
     }
 
     /// 主动退出连接：清除"最后连接"记忆并返回列表。

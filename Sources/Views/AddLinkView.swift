@@ -23,6 +23,7 @@ struct AddLinkView: View {
                         .keyboardType(.URL)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+                        .accessibilityIdentifier("add.urlField")
                 }
                 Section {
                     Button {
@@ -33,6 +34,7 @@ struct AddLinkView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .listRowBackground(Color.clear)
+                    .accessibilityIdentifier("add.save")
 
                     Button {
                         showingScanner = true
