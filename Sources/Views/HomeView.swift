@@ -4,6 +4,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var store = ConnectionsStore.shared
     @State private var showingAdd = false
+    @State private var showingDemo = false
     @State private var autoOpened = false
     @State private var activeConnection: Connection?
 
@@ -64,8 +65,20 @@ struct HomeView: View {
             Text("点右上角 ＋ 添加连接")
                 .font(.subheadline)
                 .foregroundStyle(.tertiary)
+            Button {
+                showingDemo = true
+            } label: {
+                Text("体验演示")
+                    .font(.footnote)
+            }
+            .buttonStyle(.bordered)
+            .padding(.top, 6)
+            .accessibilityIdentifier("home.demo")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .fullScreenCover(isPresented: $showingDemo) {
+            DemoView()
+        }
     }
 
     private var connectionList: some View {

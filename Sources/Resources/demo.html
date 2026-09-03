@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>演示模式</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    background: #141416; color: #f5f5f5;
+    padding: 24px 20px 60px;
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px;
+    background: #2a2a30; color: #a1a1aa; font-size: 12px; margin-bottom: 16px;
+  }
+  .logo {
+    width: 56px; height: 56px; border-radius: 14px; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; font-weight: 800; margin-bottom: 14px;
+    border: 1px solid #333;
+  }
+  h1 { font-size: 24px; margin-bottom: 8px; }
+  p.lead { color: #a1a1aa; font-size: 14px; line-height: 1.7; margin-bottom: 22px; }
+  .card {
+    background: #1e1e22; border: 1px solid #2f2f36; border-radius: 14px;
+    padding: 16px; margin-bottom: 12px;
+  }
+  .card h2 { font-size: 15px; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: #a1a1aa; line-height: 1.6; }
+  .upload {
+    margin-top: 20px; padding: 16px; border: 1px dashed #3f3f46;
+    border-radius: 14px; text-align: center;
+  }
+  .upload input { margin-top: 10px; color: #a1a1aa; }
+  .upload p { font-size: 12px; color: #6b7280; margin-top: 6px; }
+  .tip { margin-top: 18px; font-size: 12px; color: #6b7280; line-height: 1.7; }
+</style>
+</head>
+<body>
+  <span class="badge">演示模式 · Demo</span>
+  <div class="logo">Z</div>
+  <h1>远程工作区连接演示</h1>
+  <p class="lead">本页面用于在无桌面端会话时体验应用功能。真实使用中，这里加载的是 ZCode「手机连接」的官方远程控制页面，可实时查看任务进度、会话内容并进行操作。</p>
+
+  <div class="card"><h2>🎛️ 浮动工具条</h2><p>顶部悬浮胶囊：返回列表、刷新页面、更多操作（Safari 打开 / 更换链接），右侧可收起为小圆钮。</p></div>
+  <div class="card"><h2>🔄 会话同步</h2><p>真实场景下，桌面端 Agent 的回复与执行进度会实时呈现在此页面，可直接补充需求让 Agent 继续。</p></div>
+  <div class="card"><h2>💾 本地连接管理</h2><p>支持保存多条连接、滑动删除、复制链接；重新打开应用自动回到上次的连接画面。</p></div>
+
+  <div class="upload">
+    <p style="margin:0; font-weight:600; color:#e4e4e7">📤 上传功能演示</p>
+    <input type="file" accept="image/*">
+    <p>点击上方按钮可唤起系统照片选择器（无需存储权限）</p>
+  </div>
+
+  <p class="tip">提示：本应用为第三方工具，仅封装 ZCode 官方「手机连接」网页；连接地址由电脑端 ZCode 生成，请勿外传。</p>
+</body>
+</html>
