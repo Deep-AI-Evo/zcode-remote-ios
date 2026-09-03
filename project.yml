@@ -20,14 +20,15 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.zcode.remote.ios
-        MARKETING_VERSION: "1.4.2"
-        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.4.3"
+        CURRENT_PROJECT_VERSION: "2"
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
       path: Info.plist
       properties:
-        CFBundleDisplayName: ZCode 远程
-        CFBundleShortVersionString: "1.4.2"
+        CFBundleDisplayName: Z-Code 远程手机工作台
+        CFBundleShortVersionString: "1.4.3"
         CFBundleVersion: "1"
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:

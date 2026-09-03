@@ -17,7 +17,7 @@ struct HomeView: View {
                     connectionList
                 }
             }
-            .navigationTitle("ZCode 远程")
+            .navigationTitle("Z-Code 远程手机工作台")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -59,7 +59,7 @@ struct HomeView: View {
             Image(systemName: "qr.code.viewfinder")
                 .font(.system(size: 44))
                 .foregroundStyle(.secondary)
-            Text("扫码连接 ZCode 远程工作区")
+            Text("扫码连接远程工作区")
                 .font(.headline)
                 .foregroundStyle(.secondary)
             Text("点右上角 ＋ 添加连接")

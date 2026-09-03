@@ -12,6 +12,7 @@
 		51972C6D3A20EC7B6C26767E /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743FA46027A7A98F13D0BBBC /* ConnectView.swift */; };
 		5B1FDDF4491F6B5EDBBE5C3C /* AddLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582D4A2C6225B540536EA8C9 /* AddLinkView.swift */; };
 		7391E63AB5067D72E710E2F7 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A786BCFB31D7EB028904E2 /* DemoView.swift */; };
+		73A9211BF0E22DBA189E3599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C17DE2548B33F0A90FADED7 /* Assets.xcassets */; };
 		745838A3C036611D1895D8A2 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 984ED0C3B4CB89E147D7DE99 /* demo.html */; };
 		C0C75D4501F3882BB5F851A2 /* ZCodeRemoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A4008D46E540A568F1F00 /* ZCodeRemoteApp.swift */; };
 		D219CD805E486F504CB86856 /* ZCodeRemoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42859D71DBB14F51CFB1743A /* ZCodeRemoteUITests.swift */; };
@@ -38,6 +39,7 @@
 		8420196D639C69DB5C02DAD5 /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		86A786BCFB31D7EB028904E2 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		984ED0C3B4CB89E147D7DE99 /* demo.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
+		9C17DE2548B33F0A90FADED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C083684145002F1C7C9AD711 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F087B36846B8D843B68E385C /* ZCodeRemote.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ZCodeRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 		E7DD5DE9A7E65A2755995465 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C17DE2548B33F0A90FADED7 /* Assets.xcassets */,
 				984ED0C3B4CB89E147D7DE99 /* demo.html */,
 			);
 			path = Resources;
@@ -190,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73A9211BF0E22DBA189E3599 /* Assets.xcassets in Resources */,
 				745838A3C036611D1895D8A2 /* demo.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,14 +256,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zcode.remote.ios;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,14 +357,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zcode.remote.ios;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

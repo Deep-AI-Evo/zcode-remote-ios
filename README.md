@@ -1,10 +1,10 @@
-# ZCode 远程 (iOS/iPadOS)
+# Z-Code 远程手机工作台 (iOS/iPadOS)
 
 > 把 ZCode 桌面端的「手机连接」远程功能封装成 iPhone / iPad App，**保存链接、一键连接**，不用每次到电脑前扫码。
 >
 > SwiftUI 版的 [ZCode 远程 (Android)](https://github.com/Deep-AI-Evo/zcode-remote-apk) 姊妹项目。
 
-> ⚠️ **第三方非官方版本**：与智谱 / ZCode 官方无任何关系，只是把官方「手机连接」网页封装成本地 App。
+> ⚠️ **第三方非官方工具**：与智谱 / ZCode 官方无任何关系，只是把官方「手机连接」网页封装成本地 App。
 >
 > 🔒 **权限极少**：仅「相机」（扫码用）+ 系统「照片选择器」（网页上传图片用，PHPicker 免权限）。无定位、无通讯录、无存储、无后台常驻。
 
