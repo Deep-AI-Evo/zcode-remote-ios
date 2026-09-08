@@ -58,6 +58,15 @@ final class ConnectionsStore: ObservableObject {
         persist()
     }
 
+    func rename(id: String, name: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        if let idx = connections.firstIndex(where: { $0.id == id }) {
+            connections[idx].name = trimmed
+            persist()
+        }
+    }
+
     /// 仅供 UI 测试：清空全部数据。
     func removeAllForTesting() {
         connections.removeAll()

@@ -3,7 +3,7 @@ import WebKit
 import PhotosUI
 import UniformTypeIdentifiers
 
-/// 连接页：WKWebView 全屏 + 顶部浮动工具条（返回/刷新/更多/收起）。
+/// 连接页：WKWebView 全屏 + 顶部浮动工具条（返回/刷新/更多/收起）+ 左侧可折叠标签栏。
 struct ConnectView: View {
     let connection: Connection
 
@@ -12,12 +12,19 @@ struct ConnectView: View {
     @StateObject private var host = WebViewHost()
 
     @AppStorage("zcode_remote_toolbar_collapsed") private var collapsed = false
+    @AppStorage("zcode_remote_rail_expanded") private var railExpanded = false
     @State private var progress: Double = 0
     @State private var loadError: String?
+    @State private var currentConnection: Connection
+
+    init(connection: Connection) {
+        self.connection = connection
+        _currentConnection = State(initialValue: connection)
+    }
 
     var body: some View {
         ZStack(alignment: .top) {
-            WebViewRep(host: host, connection: connection,
+            WebViewRep(host: host, connection: currentConnection,
                        onProgress: { progress = $0 },
                        onError: { loadError = $0 })
                 .ignoresSafeArea(edges: .bottom)
@@ -31,6 +38,11 @@ struct ConnectView: View {
 
             toolbarOverlay
         }
+        .overlay(alignment: .leading) {
+            if store.connections.count >= 2 {
+                sideRail
+            }
+        }
         .background(Color.black.ignoresSafeArea())
         .alert("加载失败", isPresented: .init(
             get: { loadError != nil },
@@ -41,6 +53,75 @@ struct ConnectView: View {
         } message: {
             Text(loadError ?? "")
         }
+    }
+
+    // MARK: - 左侧标签栏（可折叠贴边，最多 5 个连接原地切换）
+
+    @ViewBuilder
+    private var sideRail: some View {
+        HStack(spacing: 0) {
+            if railExpanded {
+                VStack(spacing: 10) {
+                    ForEach(Array(store.connections.prefix(5))) { conn in
+                        let selected = conn.id == currentConnection.id
+                        Button {
+                            switchTo(conn)
+                        } label: {
+                            Text(String(conn.name.prefix(1)))
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundStyle(selected ? Color.black : Color.white)
+                                .frame(width: 36, height: 36)
+                                .background(Circle().fill(selected ? Color.white : Color.black.opacity(0.85)))
+                                .overlay(Circle().strokeBorder(Color.white.opacity(0.2), lineWidth: 0.5))
+                        }
+                        .accessibilityLabel(conn.name)
+                        .accessibilityIdentifier("rail.tab.\(conn.name)")
+                    }
+                    Button {
+                        withAnimation { railExpanded = false }
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundStyle(.white.opacity(0.8))
+                            .frame(width: 36, height: 22)
+                    }
+                    .accessibilityIdentifier("rail.collapse")
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal, 6)
+                .background(RoundedRectangle(cornerRadius: 22).fill(Color.black.opacity(0.85)))
+                .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(Color.white.opacity(0.12), lineWidth: 0.5))
+                .padding(.leading, 6)
+                .transition(.move(edge: .leading).combined(with: .opacity))
+            } else {
+                Button {
+                    withAnimation { railExpanded = true }
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11, weight: .semibold))
+                        .foregroundStyle(.white.opacity(0.85))
+                        .frame(width: 16, height: 48)
+                        .background(Capsule().fill(Color.black.opacity(0.7)))
+                        .overlay(Capsule().strokeBorder(Color.white.opacity(0.12), lineWidth: 0.5))
+                }
+                .padding(.leading, 2)
+                .accessibilityIdentifier("rail.handle")
+                .accessibilityLabel("展开标签栏")
+            }
+        }
+        .frame(maxHeight: .infinity, alignment: .center)
+    }
+
+    /// 标签原地切换：更新当前连接并重载，不退出连接页。
+    private func switchTo(_ conn: Connection) {
+        currentConnection = conn
+        store.saveLastConnection(conn.id)
+        if let u = URL(string: conn.url), u.host != nil {
+            var req = URLRequest(url: u)
+            req.cachePolicy = .reloadIgnoringLocalCacheData
+            host.webView.load(req)
+        }
+        withAnimation { railExpanded = false }
     }
 
     // MARK: - 浮动工具条
@@ -67,7 +148,7 @@ struct ConnectView: View {
                 barButton("arrow.clockwise", "刷新") { host.webView.reload() }
                 Menu {
                     Button {
-                        if let u = URL(string: connection.url) {
+                        if let u = URL(string: currentConnection.url) {
                             UIApplication.shared.open(u)
                         }
                     } label: {

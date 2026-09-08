@@ -7,6 +7,8 @@ struct HomeView: View {
     @State private var showingDemo = false
     @State private var autoOpened = false
     @State private var activeConnection: Connection?
+    @State private var renamingConnection: Connection?
+    @State private var renameText = ""
 
     var body: some View {
         NavigationStack {
@@ -36,6 +38,19 @@ struct HomeView: View {
             }
             .fullScreenCover(item: $activeConnection) { conn in
                 ConnectView(connection: conn)
+            }
+            .alert("重命名连接", isPresented: .init(
+                get: { renamingConnection != nil },
+                set: { if !$0 { renamingConnection = nil } }
+            )) {
+                TextField("名称", text: $renameText)
+                Button("保存") {
+                    if let conn = renamingConnection {
+                        store.rename(id: conn.id, name: renameText)
+                    }
+                    renamingConnection = nil
+                }
+                Button("取消", role: .cancel) { renamingConnection = nil }
             }
             .task {
                 // UI 测试：从干净状态开始
@@ -106,6 +121,13 @@ struct HomeView: View {
                     } label: {
                         Label("删除", systemImage: "trash")
                     }
+                    Button {
+                        renameText = conn.name
+                        renamingConnection = conn
+                    } label: {
+                        Label("重命名", systemImage: "pencil")
+                    }
+                    .tint(.indigo)
                     Button {
                         UIPasteboard.general.string = conn.url
                     } label: {
